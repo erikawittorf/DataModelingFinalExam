@@ -1,0 +1,4 @@
+SELECT DISTINCT p.Manufacturer
+FROM Product p
+WHERE p.Category = 'heels'
+  AND p.Price >= 50;
