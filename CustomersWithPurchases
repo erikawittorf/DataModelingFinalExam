@@ -1,0 +1,8 @@
+--List the states of customers who have purchases in January of 2015. Only show states and sort them alphabetically.
+SELECT DISTINCT c.State
+FROM Customer c
+JOIN Sale s
+  ON c.CustomerID = s.CustomerID
+WHERE s.SaleDate >= '2015-01-01'
+  AND s.SaleDate < '2015-02-01'
+ORDER BY c.State;
