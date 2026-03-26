@@ -1,0 +1,6 @@
+--List the information contained in the SaleItem table concerning the sales of slippers (whose category is slippers). Categories are not capitalized in the database. Note: Your answer should dynamically include all current columns and any future changes to columns.
+SELECT si.*
+FROM SaleItem si
+JOIN Product p
+  ON si.ProductID = p.ProductID
+WHERE p.Category = 'slippers';
