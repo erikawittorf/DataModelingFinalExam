@@ -1,0 +1,9 @@
+--What are the first and last names and postal codes of customers living in California who made purchases in January 2015? (States appear in the database as standard abbreviations, e.g., Alaska appears as “AK”.) Show customer first name, last name, and postal code.
+SELECT DISTINCT c.FirstName, c.LastName, c.PostalCode
+FROM Customer c
+JOIN Sale s
+  ON c.CustomerID = s.CustomerID
+WHERE c.State = 'CA'
+  AND s.SaleDate >= '2015-01-01'
+  AND s.SaleDate < '2015-02-01'
+ORDER BY c.LastName;
