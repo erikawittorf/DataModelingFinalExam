@@ -1,0 +1,22 @@
+--For each manufacturer (ManufacturerID) show the maximum list price of its products. Show only those manufacturers whose products have an average list price below the average list price of products from manufacturers in their state, and put the result in order by state. Use a correlated subquery in the HAVING clause. Show ManufacturerID, State, and MaxListPrice. 
+SELECT
+    p.ManufacturerID,
+    m.State,
+    MAX(p.ListPrice) AS MaxListPrice
+FROM Product p
+JOIN Manufacturer m
+  ON p.ManufacturerID = m.ManufacturerID
+GROUP BY
+    p.ManufacturerID,
+    m.State
+HAVING
+    AVG(p.ListPrice) <
+    (
+        SELECT AVG(p2.ListPrice)
+        FROM Product p2
+        JOIN Manufacturer m2
+          ON p2.ManufacturerID = m2.ManufacturerID
+        WHERE m2.State = m.State
+    )
+ORDER BY
+    m.State;
