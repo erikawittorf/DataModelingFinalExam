@@ -1,0 +1,9 @@
+--Who are all the customers in Washington who made purchases in 2015? Sort by LastName. Only show first and last names.
+SELECT DISTINCT c.FirstName, c.LastName
+FROM Customer c
+JOIN Sale s
+  ON c.CustomerID = s.CustomerID
+WHERE c.State = 'WA'
+  AND s.SaleDate >= '2015-01-01'
+  AND s.SaleDate < '2016-01-01'
+ORDER BY c.LastName;
