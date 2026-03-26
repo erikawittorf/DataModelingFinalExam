@@ -1,0 +1,7 @@
+--List the categories and colors of shoes manufactured by Puma. Sort the results by category, then by color. Show only category and color.
+SELECT DISTINCT p.Category, p.Color
+FROM Product p
+JOIN Manufacturer m
+  ON p.ManufacturerID = m.ManufacturerID
+WHERE m.ManufacturerName = 'Puma'
+ORDER BY p.Category, p.Color;
