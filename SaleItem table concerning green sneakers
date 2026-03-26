@@ -1,0 +1,7 @@
+--List the information in the SaleItem table concerning green sneakers. Use the first letter of each table name as alias names. (Note: Colors are capitalized while categories are not.) Note: Your answer should dynamically include all current columns in the saleItem table and any future changes to columns.
+SELECT si.*
+FROM SaleItem si
+JOIN Product p
+  ON si.ProductID = p.ProductID
+WHERE p.Color = 'Green'
+  AND p.Category = 'sneakers';
