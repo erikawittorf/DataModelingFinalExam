@@ -1,0 +1,10 @@
+--For each ManufacturerID and manufacturer name, show the maximum list price of its products. Do this using a correlated subquery in the SELECT clause. Name the new column "MaxListPrice".
+SELECT
+    m.ManufacturerID,
+    m.ManufacturerName,
+    (
+        SELECT MAX(p.ListPrice)
+        FROM Product p
+        WHERE p.ManufacturerID = m.ManufacturerID
+    ) AS MaxListPrice
+FROM Manufacturer m;
