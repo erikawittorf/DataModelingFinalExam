@@ -1,0 +1,7 @@
+--What categories of shoes have been sold whose SalePrice is over $100? Only show categories.
+
+SELECT DISTINCT p.Category
+FROM SaleItem si
+JOIN Product p
+  ON si.ProductID = p.ProductID
+WHERE si.SalePrice > 100;
