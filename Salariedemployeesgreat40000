@@ -1,0 +1,7 @@
+--List Salaried employees whose salary is greater than $40,000. Show Employee first name, last name, hiredate, and salary. Sort the data by hire date.
+SELECT e.FirstName, e.LastName, e.HireDate, se.Salary
+FROM Employee e
+JOIN SalaryEmployee se
+  ON e.EmployeeID = se.EmployeeID
+WHERE se.Salary > 40000
+ORDER BY e.HireDate;
