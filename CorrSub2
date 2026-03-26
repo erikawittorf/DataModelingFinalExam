@@ -1,0 +1,13 @@
+SELECT c.CustomerID, c.FirstName, c.LastName
+FROM Customer c
+WHERE 1 = (
+    SELECT COUNT(DISTINCT p.Color)
+    FROM Sale s
+    JOIN SaleItem si
+      ON s.SaleID = si.SaleID
+    JOIN Product p
+      ON si.ProductID = p.ProductID
+    WHERE s.CustomerID = c.CustomerID
+      AND s.SaleDate >= '2014-01-01'
+      AND s.SaleDate < '2014-02-01'
+);
