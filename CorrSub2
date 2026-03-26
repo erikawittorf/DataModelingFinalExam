@@ -1,3 +1,4 @@
+--Give a list of customers (IDs and Names) whose purchases during the month of January 2014 were always the same color. (Hint: Use a single correlated subquery with joins, and count distinct colors of purchased products in the WHERE clause.)
 SELECT c.CustomerID, c.FirstName, c.LastName
 FROM Customer c
 WHERE 1 = (
