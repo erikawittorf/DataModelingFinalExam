@@ -1,0 +1,8 @@
+--Give a list of Manufacturer names and IDs for manufacturers which only provide products valued over $30, i.e. whose cheapest product's list price is over $30. (Hint: Use a correlated subquery in WHERE clause)
+SELECT m.ManufacturerID, m.ManufacturerName
+FROM Manufacturer m
+WHERE (
+    SELECT MIN(p.ListPrice)
+    FROM Product p
+    WHERE p.ManufacturerID = m.ManufacturerID
+) > 30;
