@@ -1,0 +1,20 @@
+--Give a list of customers (IDs and names and states) from Texas (TX) who have purchased multiple items, but all of which were the same color. Multiple items means more than one sale item. Use what you learned in a previous problem about counting colors. Use subqueries in the WHERE clause. 
+SELECT c.CustomerID, c.FirstName, c.LastName, c.State
+FROM Customer c
+WHERE c.State = 'TX'
+  AND (
+        SELECT COUNT(*)
+        FROM Sale s
+        JOIN SaleItem si
+          ON s.SaleID = si.SaleID
+        WHERE s.CustomerID = c.CustomerID
+      ) > 1
+  AND (
+        SELECT COUNT(DISTINCT p.Color)
+        FROM Sale s
+        JOIN SaleItem si
+          ON s.SaleID = si.SaleID
+        JOIN Product p
+          ON si.ProductID = p.ProductID
+        WHERE s.CustomerID = c.CustomerID
+      ) = 1;
