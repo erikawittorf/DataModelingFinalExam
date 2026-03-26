@@ -1,0 +1,22 @@
+--For each product category, color, and gender combination show the average list price and name it AvgListPrice. Restrict your result to those category-color-gender combinations whose minimum list price is more than half the maximum list price for all products. Put the result set in order by gender, category, and color. Use a subquery in the HAVING clause. 
+SELECT
+    p.Category,
+    p.Color,
+    p.Gender,
+    AVG(p.ListPrice) AS AvgListPrice
+FROM Product p
+GROUP BY
+    p.Category,
+    p.Color,
+    p.Gender
+HAVING
+    MIN(p.ListPrice) >
+    (
+        SELECT
+            0.5 * MAX(ListPrice)
+        FROM Product
+    )
+ORDER BY
+    p.Gender,
+    p.Category,
+    p.Color;
