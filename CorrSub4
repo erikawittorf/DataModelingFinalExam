@@ -1,0 +1,16 @@
+--For each sale with non-zero tax, list the saleID and saledate, tax, and shipping, as well as the total of the sale. This sale total includes the quantity * saleprice of all the sale items on the sale plus the tax and shipping. Do this with a correlated subquery in the SELECT clause. Show data for February 2015. Name the new column "TotalSale".
+SELECT
+    s.SaleID,
+    s.SaleDate,
+    s.Tax,
+    s.Shipping,
+    (
+        SELECT SUM(si.SalePrice * si.Quantity)
+        FROM SaleItem si
+        WHERE si.SaleID = s.SaleID
+    ) + s.Tax + s.Shipping AS TotalSale
+FROM Sale s
+WHERE s.Tax <> 0
+  AND s.SaleDate >= '2015-02-01'
+  AND s.SaleDate < '2015-03-01'
+ORDER BY s.SaleID;
