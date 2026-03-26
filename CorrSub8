@@ -1,0 +1,9 @@
+--Show employee information for the most recently hired employee in each city. (Most recent is Maximum hiredate). Use a correlated subquery in the WHERE clause. Sequence the data by city. 
+SELECT e.*
+FROM Employee e
+WHERE e.HireDate = (
+    SELECT MAX(e2.HireDate)
+    FROM Employee e2
+    WHERE e2.City = e.City
+)
+ORDER BY e.City;
