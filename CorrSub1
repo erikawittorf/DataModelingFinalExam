@@ -1,0 +1,11 @@
+--List Employees (first and last names) and their salaries of employees who have a salary higher than their managers.  Use a correlated subquery in the WHERE clause.
+SELECT e.FirstName, e.LastName, se.Salary
+FROM Employee e
+JOIN SalaryEmployee se
+  ON e.EmployeeID = se.EmployeeID
+WHERE se.Salary >
+      (
+          SELECT se2.Salary
+          FROM SalaryEmployee se2
+          WHERE se2.EmployeeID = e.ManagerID
+      );
