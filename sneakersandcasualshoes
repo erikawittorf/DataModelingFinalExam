@@ -1,0 +1,7 @@
+--List the information contained in the SaleItem table plus the product name and category concerning the sales of sneakers and the sales of casual shoes (categories) whose sale price is equal to $100. (Categories are not capitalized in the database.) Note: Your answer should dynamically include all current columns in SaleItem and any future changes to columns, plus the product name and category.
+SELECT si.*, p.ProductName, p.Category
+FROM SaleItem si
+JOIN Product p
+  ON si.ProductID = p.ProductID
+WHERE p.Category IN ('sneakers', 'casual shoes')
+  AND si.SalePrice = 100;
